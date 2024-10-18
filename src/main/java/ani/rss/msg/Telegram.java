@@ -18,6 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Telegram
+ */
 @Slf4j
 public class Telegram implements Message {
     public Boolean send(Config config, Ani ani, MessageEnum messageEnum, String text) {
@@ -69,7 +72,11 @@ public class Telegram implements Message {
         return HttpReq.get(url, true)
                 .thenFunction(res -> {
                     JsonObject jsonObject = gson.fromJson(res.body(), JsonObject.class);
-                    jsonObject.get("result").getAsJsonArray()
+                    JsonElement result = jsonObject.get("result");
+                    if (Objects.isNull(result)) {
+                        return map;
+                    }
+                    result.getAsJsonArray()
                             .asList()
                             .stream()
                             .map(JsonElement::getAsJsonObject)

@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 订阅
+ */
 @Data
 @Accessors(chain = true)
 public class Ani implements Serializable {
@@ -196,7 +199,7 @@ public class Ani implements Serializable {
                 .setBgmUrl("")
                 .setSubgroup("")
                 .setCustomEpisode(false)
-                .setCustomEpisodeStr("\\d(\\.5)?")
+                .setCustomEpisodeStr("\\d+(\\.5)?")
                 .setCustomEpisodeGroupIndex(0)
                 .setOmit(true)
                 .setDownloadNew(false);
